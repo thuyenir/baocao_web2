@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Cosu_MVC.props" />
+</Project>

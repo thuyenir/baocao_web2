@@ -1,0 +1,6 @@
+@BC_Web2_HostAddress = http://localhost:5065
+
+GET {{BC_Web2_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

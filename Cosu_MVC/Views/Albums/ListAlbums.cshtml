@@ -1,0 +1,64 @@
+﻿@model List<Cosu_MVC.Models.DTO.Album.GetAlbumDTO>
+
+
+<div style="margin-top:30px;">
+    @if (Model != null && Model.Any())
+    {
+        <h5>Danh sách album</h5>
+        <p>
+            <a class="btn btn-primary" asp-action="AddAlbum">Thêm album</a>
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Mã</th>
+                    <th>Tên</th>
+                    <th>Danh sách ảnh</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var a in Model)
+                {
+                    <tr>
+                        <td>@a.Id</td>
+                        <td>@a.Name</td>
+                        <td>
+                            @if (a.ImageName != null && a.ImageName.Any())
+                            {
+                                @foreach (var imageName in a.ImageName)
+                                {
+                                    <span>@imageName</span>
+                                }
+                            }
+                            else
+                            {
+                                <p>Không có ảnh</p>
+                            }
+                        </td>
+                        <td>
+                            <a class="btn btn-primary" asp-action="AlbumId" asp-route-id="@a.Id">Chi tiết</a>
+                            <a class="btn btn-secondary" asp-action="EditAlbum" asp-route-id="@a.Id">Sửa</a>
+                            <a class="btn btn-danger" asp-action="DeleteAlbum" asp-route-id="@a.Id">Xóa</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="container-fluid py-5">
+            <div class="container py-5">
+                <div class="row justify-content-center">
+                    <div class="text-center">
+                        <h4>Thông báo</h4>
+                        <p>Bạn chưa xác thực tài khoản.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        
+    }
+</div>

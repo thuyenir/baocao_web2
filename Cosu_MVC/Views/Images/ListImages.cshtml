@@ -1,0 +1,54 @@
+﻿
+@model List<Cosu_MVC.Models.DTO.Image.GetImageDTO>
+
+<div style="margin-top:30px;">
+    @if (Model != null && Model.Any())
+    {
+        <h5>Danh sách ảnh</h5>
+        <p>
+            <a class="btn btn-primary" asp-action="UploadImage">Thêm Hình Ảnh</a>
+        </p>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Mã</th>
+                    <th>Tên</th>
+                    <th>Ảnh</th>
+                    <th>Album</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var image in Model)
+                {
+                    var imageUrl = $"https://localhost:7029/api/Images/{image.FilePath}"; 
+                    <tr>
+                        <td>@image.Id</td>
+                        <td>@image.FileName</td>
+                        <td><img src="@imageUrl" alt="@image.FileName" class="img-thumbnail" style="max-width: 100px;" /></td>
+                        <td>@image.AlbumName</td>
+                        <td>
+                            <a class="btn btn-primary" asp-action="ImageId" asp-route-id="@image.Id">Chi tiết</a>
+                            <a class="btn btn-secondary" asp-action="EditImage" asp-route-id="@image.Id">Sửa</a>
+                            <a class="btn btn-danger" asp-action="DeleteImage" asp-route-id="@image.Id">Xóa</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <div class="container-fluid py-5">
+            <div class="container py-5">
+                <div class="row justify-content-center">
+                    <div class="text-center">
+                        <h4>Thông báo</h4>
+                        <p>Bạn chưa xác thực tài khoản.</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    }
+</div>
